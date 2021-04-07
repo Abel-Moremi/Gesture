@@ -9,18 +9,27 @@
 
 <script>
 import tf from '@tensorflow/tfjs'
-import handpose from '@tensorflow-models/handpose'
+import * as handpose from '@tensorflow-models/handpose'
 
 export default {
-   mounted: function() {
-		this.video = this.$refs.video;
-		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-			navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
-				console.log(stream)
-				video.srcObject = stream;
-				this.video.play();
-			});
-		}
+  methods: {
+    webcamFunc() {
+      this.video = this.$refs.video;
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
+          console.log(stream)
+          video.srcObject = stream;
+        });
+      }
+    },
+    loadHandposeFunc: async() => {
+      const net = await handpose.load()
+      console.log("Handpose model loaded")
+    }
+  },
+  mounted() {
+		this.webcamFunc()
+    this.loadHandposeFunc()
 	}
 }
 </script>
