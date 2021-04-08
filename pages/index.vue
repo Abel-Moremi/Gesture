@@ -22,9 +22,52 @@ export default {
         });
       }
     },
-    loadHandposeFunc: async() => {
+    async detectFunc(net) {
+
+      const videoRef = this.$refs.video
+      const canvasRef = this.$refs.canvasRef
+
+      console.log(videoRef.currentSrc)
+
+      // Check data is avalable
+      if( typeof videoRef.currentSrc !== "undefined" &&
+          videoRef.currentSrc !== null &&
+          videoRef.readyState === 4
+        ){
+          // Get video properties
+          const video = videoRef
+          const videoWidth = videoRef.Width
+          const videoHeight = videoRef.height
+
+          // Set video height  and width
+          videoRef.width = videoWidth
+          videoRef.height = videoHeight
+
+          // Set canvas height  and width
+          canvasRef.width = videoWidth
+          canvasRef.height = videoHeight
+
+          // Make Detection
+          const hand = await net.estimateHands(video);
+          console.log(hand)
+
+          // Draw mesh
+        }
+      
+    },
+    async loadHandposeFunc(){
       const net = await handpose.load()
       console.log("Handpose model loaded")
+      
+      // loop and detect hands
+      setInterval(() => {
+        try {
+          this.detectFunc(net)
+        }
+        catch(err) {
+          console.log(err)
+        }
+      }, 100)
     }
   },
   mounted() {
