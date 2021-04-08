@@ -1,7 +1,7 @@
 <template>
   <div>
     <client-only>
-      <video autoplay="true" playsinline="true" class="webcam" id="video" ref="video"></video>
+      <video autoplay="true" playsinline="true" class="webcam" id="video" ref="videoRef"  height="480" width="640"></video>
       <canvas ref="canvasRef" class="webcam" />
     </client-only>
   </div>
@@ -10,11 +10,12 @@
 <script>
 import tf from '@tensorflow/tfjs'
 import * as handpose from '@tensorflow-models/handpose'
+import {drawHand} from 'assets/utilities'
 
 export default {
   methods: {
     webcamFunc() {
-      this.video = this.$refs.video;
+      this.video = this.$refs.videoRef;
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
           console.log(stream)
@@ -24,20 +25,20 @@ export default {
     },
     async detectFunc(net) {
 
-      const videoRef = this.$refs.video
+      const videoRef = this.$refs.videoRef
       const canvasRef = this.$refs.canvasRef
 
-      console.log(videoRef.currentSrc)
-
       // Check data is avalable
-      if( typeof videoRef.currentSrc !== "undefined" &&
-          videoRef.currentSrc !== null &&
+      if( typeof videoRef !== "undefined" &&
+          videoRef !== null &&
           videoRef.readyState === 4
         ){
           // Get video properties
           const video = videoRef
-          const videoWidth = videoRef.Width
+          const videoWidth = videoRef.width
           const videoHeight = videoRef.height
+
+          console.log(videoWidth)
 
           // Set video height  and width
           videoRef.width = videoWidth
@@ -52,8 +53,9 @@ export default {
           console.log(hand)
 
           // Draw mesh
+          const ctx = canvasRef.getContext("2d")
+          drawHand(hand, ctx)
         }
-      
     },
     async loadHandposeFunc(){
       const net = await handpose.load()
