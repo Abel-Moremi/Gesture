@@ -38,8 +38,6 @@ export default {
           const videoWidth = videoRef.width
           const videoHeight = videoRef.height
 
-          console.log(videoWidth)
-
           // Set video height  and width
           videoRef.width = videoWidth
           videoRef.height = videoHeight
