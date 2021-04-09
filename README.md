@@ -3,7 +3,7 @@
   <h1 align="center"> GESTURE</h1>
 
   <p align="center">
-    AI hand pose estimation in Nuxt using TensorflowJS
+    Realtime AI handpose estimation in Nuxt using TensorflowJS
     <br />
     <a href="https://github.com/Abel-Moremi/Gesture/issues">Report Bug</a>
     ·
@@ -11,14 +11,9 @@
   </p>
 </p>
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+It uses the webcam to predict 20 landmarks(the dots in the picture below) in one's hand. It then connects the dots to form the mesh, all this is done in realtime. Its pretty cool.
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
+![alt text](https://github.com/Abel-Moremi/Gesture/blob/master/screen_shots/screen-shot-01.png)
 
 
 
