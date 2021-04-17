@@ -11,7 +11,7 @@
   </p>
 </p>
 
-It uses the webcam to predict 20 landmarks(the dots in the picture below) in one's hand. It then connects the dots to form the mesh, all this is done in realtime. Its pretty cool.
+It uses the webcam to predict 21 landmarks(the dots in the picture below) in one's hand. It then connects the dots to form the mesh, all this is done in realtime. Its pretty cool.
 
 ![alt text](https://github.com/Abel-Moremi/Gesture/blob/master/screen_shots/screen-shot-01.png)
 
@@ -20,7 +20,7 @@ It uses the webcam to predict 20 landmarks(the dots in the picture below) in one
 ### Built With
 
 * [Nuxt](https://nuxtjs.org/)
-* [HandPose]() a TensorflowJS Model for realtime hand estimation.
+* [HandPose](https://github.com/tensorflow/tfjs-models/tree/master/handpose) a TensorflowJS Model for realtime hand estimation.
 * Javascript
 
 <!-- GETTING STARTED -->
@@ -40,7 +40,7 @@ This is an example of how to list things you need to use the software and how to
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/abel-moremi/gesture.git
    ```
 2. Install dependecies
    ```sh
